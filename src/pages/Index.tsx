@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import FancyTitle from "@/components/FancyTitle";
 import AnalyticsDashboard from "@/components/AnalyticsDashboard";
+import IncidentReports from "@/components/IncidentReports";
 
 const DUMMY_VIDEO_URL = "https://www.w3schools.com/html/mov_bbb.mp4";
 
@@ -60,6 +61,8 @@ const Index = () => {
       <WalmartHeader />
       <main className="flex flex-col flex-1 py-12 md:px-24 px-2 items-center gap-y-8 w-full">
         <AnalyticsDashboard />
+        {/* Add the Incident Reports panel below the dashboard */}
+        <IncidentReports />
         {/* Improved heading */}
         <FancyTitle
           title="Fraudulent Activity Video Detection"
