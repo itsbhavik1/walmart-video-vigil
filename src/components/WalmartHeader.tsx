@@ -24,9 +24,9 @@ const WalmartHeader = () => (
     <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-[#0071ce]/30 pointer-events-none" />
     <div className="relative z-10 flex items-center">
       <WalmartSVG />
-      <span className="text-white text-2xl md:text-3xl font-bold tracking-tight drop-shadow-sm font-sans">
+      <span className="text-white text-2xl md:text-3xl font-bold tracking-tight drop-shadow-sm font-playfair">
         Walmart Security <span className="hidden md:inline">|</span>
-        <span className="ml-2 text-yellow-300 font-semibold whitespace-nowrap drop-shadow">(Suspicious Activity Detection)</span>
+        <span className="ml-2 text-yellow-300 font-semibold whitespace-nowrap drop-shadow font-playfair">(Suspicious Activity Detection)</span>
       </span>
     </div>
   </header>
