@@ -2,6 +2,7 @@
 import React from "react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { AlertCircle, ShoppingCart } from "lucide-react";
+import RestockRequestButton from "./RestockRequestButton";
 
 const trendingAlerts = [
   {
@@ -17,6 +18,8 @@ const trendingAlerts = [
       </>
     ),
     color: "bg-[#ffefef] border-l-4 border-[#e9342a]",
+    restockable: true,
+    itemName: "Nintendo Switch",
   },
   {
     icon: <ShoppingCart size={20} className="text-[#0071ce]" />,
@@ -30,6 +33,8 @@ const trendingAlerts = [
       </>
     ),
     color: "bg-[#f0f7ff] border-l-4 border-[#43a8f4]",
+    restockable: false,
+    itemName: "Apple iPad",
   },
 ];
 
@@ -50,12 +55,17 @@ const StoreNewsInventory: React.FC = () => (
               className={`flex items-start gap-3 px-4 py-3 rounded-2xl shadow-sm ${item.color}`}
             >
               <span className="mt-0.5">{item.icon}</span>
-              <div>
-                <div className="text-base font-medium leading-snug text-[#232e41]">
-                  {item.headline}
-                  <span className="text-xs ml-2 px-2 py-0.5 bg-[#fbe5d6] rounded-full text-[#98500a] font-semibold">
+              <div className="flex flex-col gap-1 w-full">
+                <div className="flex items-center gap-2">
+                  <span className="text-base font-medium leading-snug text-[#232e41]">
+                    {item.headline}
+                  </span>
+                  <span className="text-xs px-2 py-0.5 bg-[#fbe5d6] rounded-full text-[#98500a] font-semibold">
                     {item.time}
                   </span>
+                  {item.restockable && (
+                    <RestockRequestButton item={item.itemName} />
+                  )}
                 </div>
                 <div className="text-xs text-gray-600 mt-0.5">{item.description}</div>
               </div>
