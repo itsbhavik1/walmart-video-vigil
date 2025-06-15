@@ -2,6 +2,7 @@
 import React from "react";
 import { Card, CardContent, CardTitle, CardDescription } from "@/components/ui/card";
 import { Users, MapPin, User } from "lucide-react";
+import CrowdNavbar from "./CrowdNavbar";
 
 // Use a reliable, always-accessible demo video:
 const DEMO_CROWD_VIDEO = "https://www.w3schools.com/html/mov_bbb.mp4";
@@ -37,12 +38,37 @@ const levelColor =
     : "#42ba96";
 
 const CrowdDashboard: React.FC = () => (
-  <section className="w-full max-w-4xl mx-auto mb-8 animate-fade-in">
+  <section className="w-full max-w-4xl mx-auto mb-10 animate-fade-in">
+    {/* Decorative mini navbar */}
+    <CrowdNavbar />
+
+    {/* Section Header */}
+    <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+      <div>
+        <h2 className="text-2xl font-bold text-[#0071ce] flex items-center gap-2 font-playfair">
+          <Users size={25} className="text-[#ffc220]" />
+          Store Crowd Monitoring
+        </h2>
+        <CardDescription className="text-gray-500 mt-1 mb-0 text-base font-normal">
+          Analyze live congestion, crowd levels, and assigned staff for each key zone.
+        </CardDescription>
+      </div>
+      <div className="flex items-end gap-2 mt-2 md:mt-0">
+        <span className="text-lg font-semibold text-gray-800">Overall Level:</span>
+        <span
+          className="text-base px-3 py-1 rounded-full font-bold"
+          style={{ background: levelColor, color: "#fff" }}
+        >
+          {overallLevel}
+        </span>
+      </div>
+    </div>
+
     <Card className="bg-white/95 shadow-xl border-[#43a8f420] rounded-3xl overflow-hidden">
       <CardContent>
-        <div className="flex flex-col md:flex-row gap-7 items-center md:items-stretch">
+        <div className="flex flex-col md:flex-row gap-8 items-center md:items-stretch">
           {/* Video Panel */}
-          <div className="flex-1 flex items-center justify-center min-h-[16rem]">
+          <div className="flex-1 flex items-center justify-center min-h-[20rem]">
             <video
               src={DEMO_CROWD_VIDEO}
               controls
@@ -50,39 +76,24 @@ const CrowdDashboard: React.FC = () => (
               loop
               muted
               playsInline
-              className="rounded-xl w-full max-w-[420px] max-h-64 border bg-black shadow object-contain mx-auto"
+              className="rounded-2xl w-full max-w-[26rem] max-h-64 border bg-black shadow-md object-contain mx-auto"
               poster="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=640&q=80"
               style={{ display: "block" }}
             />
           </div>
           {/* Details Panel */}
           <div className="flex flex-col flex-1 md:justify-center gap-2 w-full">
-            <div className="flex items-center gap-2">
-              <Users size={22} className="text-[#0071ce]" />
-              <CardTitle className="text-xl text-[#0071ce] font-bold">
-                Crowd Management
-              </CardTitle>
+            <div className="mt-2 mb-1">
+              <strong className="text-[#0071ce] text-base">Hot Zones:</strong>
             </div>
-            <CardDescription className="text-gray-500 mb-2">
-              Live visualization of store occupancy and congestion hot spots.
-            </CardDescription>
-            <div className="flex items-end gap-2">
-              <span className="text-lg font-semibold text-gray-800">
-                Current Crowd Level:
-              </span>
-              <span
-                className="text-base px-3 py-1 rounded-full font-bold"
-                style={{ background: levelColor, color: "#fff" }}
-              >
-                {overallLevel}
-              </span>
-            </div>
-            <div className="mt-4">
-              <span className="block font-semibold mb-1 text-gray-700">Hot Zones:</span>
-              <ul className="space-y-3">
-                {hotZones.map((zone) => (
-                  <li key={zone.name} className="flex items-start sm:items-center gap-3 flex-col sm:flex-row bg-[#f9fafb] px-3 py-2 rounded-lg shadow border-l-4" style={{ borderColor: zone.color }}>
-                    <div className="flex items-center gap-2 min-w-[150px]">
+            <ul className="space-y-4">
+              {hotZones.map((zone) => (
+                <li
+                  key={zone.name}
+                  className="flex flex-col gap-2 bg-[#f9fafb] px-4 py-3 rounded-lg shadow border-l-4"
+                  style={{ borderColor: zone.color }}>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                    <div className="flex items-center gap-2 min-w-[140px]">
                       <MapPin size={16} style={{ color: zone.color }} />
                       <span className="font-medium">{zone.name}</span>
                       <span
@@ -91,26 +102,28 @@ const CrowdDashboard: React.FC = () => (
                       >
                         {zone.density}
                       </span>
-                      <span className="ml-2 flex items-center gap-1 text-[12px] text-gray-600">
-                        <User size={14} style={{ color: zone.color }} />
-                        <b>{zone.people.length}</b> assigned
+                    </div>
+                    <div className="flex items-center gap-2 text-[13px] text-gray-700 mt-1 sm:mt-0">
+                      <User size={15} style={{ color: zone.color }} />
+                      <span>
+                        <b>{zone.people.length}</b> assigned:
                       </span>
+                      <div className="flex flex-wrap gap-1 ml-2">
+                        {zone.people.map((person) => (
+                          <span
+                            key={person}
+                            className="inline-block bg-gray-100 border border-gray-200 rounded-full px-2 py-0.5 text-xs font-semibold text-gray-800 shadow-sm"
+                          >
+                            {person}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                    <div className="pl-7 flex flex-wrap gap-2 mb-1">
-                      {zone.people.map((person) => (
-                        <span
-                          key={person}
-                          className="inline-block bg-gray-100 border border-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-800 shadow-sm"
-                        >
-                          {person}
-                        </span>
-                      ))}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="mt-3 text-xs text-gray-400">
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-4 text-xs text-gray-400">
               *This video and data are for demonstration only. Not real-time.
             </div>
           </div>
@@ -121,4 +134,3 @@ const CrowdDashboard: React.FC = () => (
 );
 
 export default CrowdDashboard;
-
