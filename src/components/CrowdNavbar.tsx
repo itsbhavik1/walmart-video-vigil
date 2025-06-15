@@ -61,3 +61,7 @@ const CrowdNavbar: React.FC<CrowdNavbarProps> = ({ activeTab, onTabChange }) => 
       ))}
     </div>
   </nav>
+);
+
+export default CrowdNavbar;
+
