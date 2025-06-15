@@ -1,4 +1,3 @@
-
 import React, { useMemo, useState } from "react";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 import { ChartBar, Users, Clock, MessageSquare } from "lucide-react";
@@ -180,8 +179,8 @@ const AnalyticsDashboard: React.FC = () => {
                       />
                     </filter>
                   </defs>
-                  <Tooltip content={<CustomTooltip />} />
-                  <Legend content={<CustomLegend />} />
+                  <Tooltip content={props => <CustomTooltip {...props} />} />
+                  <Legend content={props => <CustomLegend {...props} />} />
                 </PieChart>
               </ResponsiveContainer>
             </div>
@@ -210,7 +209,7 @@ const AnalyticsDashboard: React.FC = () => {
                     axisLine={{ stroke: "#bde0ff" }}
                     allowDecimals={false}
                   />
-                  <Tooltip content={<CustomTooltip />} />
+                  <Tooltip content={props => <CustomTooltip {...props} />} />
                   <Bar
                     dataKey="incidents"
                     fill="#ffc220"
