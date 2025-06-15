@@ -12,6 +12,8 @@ import AlertPanel from "@/components/AlertPanel";
 import CrowdDashboard from "@/components/CrowdDashboard";
 import StoreNewsInventory from "@/components/StoreNewsInventory";
 import StoreOperationsPanel from "@/components/StoreOperationsPanel";
+import EmployeeShiftWidget from "@/components/EmployeeShiftWidget";
+import ContactDirectoryWidget from "@/components/ContactDirectoryWidget";
 
 const DUMMY_VIDEO_URL = "https://www.w3schools.com/html/mov_bbb.mp4";
 
@@ -67,9 +69,11 @@ const Index = () => {
         {/* Alerts go at the very top, then analytics/reports */}
         <AlertPanel />
         <AnalyticsDashboard />
-        {/* --- New Store News & Inventory Alerts Section --- */}
         <StoreNewsInventory />
-        {/* --- New Store Operations Quick Action Panel --- */}
+        {/* --- New Employee Widgets --- */}
+        <EmployeeShiftWidget />
+        <ContactDirectoryWidget />
+        {/* --- Store Operations --- */}
         <StoreOperationsPanel />
         {/* --- New Crowd Dashboard Section below Analytics --- */}
         <CrowdDashboard />
