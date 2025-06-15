@@ -9,6 +9,7 @@ import FancyTitle from "@/components/FancyTitle";
 import AnalyticsDashboard from "@/components/AnalyticsDashboard";
 import IncidentReports from "@/components/IncidentReports";
 import AlertPanel from "@/components/AlertPanel";
+import CrowdDashboard from "@/components/CrowdDashboard";
 
 const DUMMY_VIDEO_URL = "https://www.w3schools.com/html/mov_bbb.mp4";
 
@@ -64,6 +65,8 @@ const Index = () => {
         {/* Alerts go at the very top, then analytics/reports */}
         <AlertPanel />
         <AnalyticsDashboard />
+        {/* --- New Crowd Dashboard Section below Analytics --- */}
+        <CrowdDashboard />
         <IncidentReports />
         {/* Improved heading */}
         <FancyTitle
