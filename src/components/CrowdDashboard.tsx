@@ -1,7 +1,6 @@
-
 import React, { useState } from "react";
 import { Card, CardContent, CardTitle, CardDescription } from "@/components/ui/card";
-import { Users, MapPin, User } from "lucide-react";
+import { Users, MapPin, User, Menu } from "lucide-react";
 import CrowdNavbar from "./CrowdNavbar";
 
 // Use a reliable, always-accessible demo video:
