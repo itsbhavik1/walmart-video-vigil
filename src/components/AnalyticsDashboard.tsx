@@ -179,8 +179,9 @@ const AnalyticsDashboard: React.FC = () => {
                       />
                     </filter>
                   </defs>
-                  <Tooltip content={props => <CustomTooltip {...props} />} />
-                  <Legend content={props => <CustomLegend {...props} />} />
+                  {/* Always use function-style content for Tooltip and Legend */}
+                  <Tooltip content={(props) => <CustomTooltip {...props} />} />
+                  <Legend content={(props) => <CustomLegend {...props} />} />
                 </PieChart>
               </ResponsiveContainer>
             </div>
@@ -209,7 +210,7 @@ const AnalyticsDashboard: React.FC = () => {
                     axisLine={{ stroke: "#bde0ff" }}
                     allowDecimals={false}
                   />
-                  <Tooltip content={props => <CustomTooltip {...props} />} />
+                  <Tooltip content={(props) => <CustomTooltip {...props} />} />
                   <Bar
                     dataKey="incidents"
                     fill="#ffc220"
