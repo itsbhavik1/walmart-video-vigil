@@ -1,66 +1,63 @@
 
 /*
-This file simulates the suspicious activity model API.
-- Replace the SIMULATED API implementation with a real HTTP call to your backend after deploying your Python model.
-- See instructions below.
+This file integrates with your deployed suspicious activity detection model API.
+
+Update the BACKEND_URL to your running backend address!
+See: https://github.com/OmRajpurkar/Alert-Generation-on-Detection-of-Suspicious-Activity-using-Transfer-Learning/
+
+Frontend expects backend responses to be in this format:
+[
+  {
+    "timestamp": "00:00:05",
+    "label": "Suspicious Action",
+    "description": "...",
+    "confidence": 0.91
+  },
+  ...
+]
 */
 
 export type Detection = {
-  timestamp: string; // Example: "00:01:23"
-  label: string; // Example: "Suspicious Person"
-  description: string; // Example: "Person loitering near exit"
-  confidence: number; // Between 0 and 1
+  timestamp: string;
+  label: string;
+  description: string;
+  confidence: number;
 };
 
+// TODO: Set your backend URL!
+const BACKEND_URL = "http://localhost:5000/analyze"; // <-- CHANGE THIS TO THE REAL URL
+
 export async function analyzeVideoWithModel(file: File): Promise<Detection[]> {
-  // -- SIMULATED DELAY & RESULT --
-  await new Promise((res) => setTimeout(res, 3200));
-  // Simulated random detection data
-  return Math.random() > 0.5
-    ? [
-        {
-          timestamp: "00:00:05",
-          label: "Suspicious Action",
-          description: "Detected rapid movement behind cash register.",
-          confidence: 0.89,
-        },
-        {
-          timestamp: "00:02:37",
-          label: "Unattended Bag",
-          description: "Bag left alone in customer area.",
-          confidence: 0.72,
-        },
-      ]
-    : [];
+  const form = new FormData();
+  form.append("file", file);
+
+  const resp = await fetch(BACKEND_URL, {
+    method: "POST",
+    body: form,
+  });
+
+  if (!resp.ok) {
+    const errorText = await resp.text();
+    throw new Error("Backend API error: " + errorText);
+  }
+
+  const detections = await resp.json();
+  // Validation: Ensure detections match the expected format
+  if (!Array.isArray(detections)) throw new Error("Invalid response from backend.");
+
+  return detections;
 }
 
 /*
-========= HOW TO INTEGRATE YOUR MODEL =========
+======== BACKEND SETUP STEPS ========
+1. Clone and run the backend from:
+   https://github.com/OmRajpurkar/Alert-Generation-on-Detection-of-Suspicious-Activity-using-Transfer-Learning/
 
-1. Deploy your model backend as a REST API (e.g., Flask, FastAPI, etc.), using code from https://github.com/OmRajpurkar/Alert-Generation-on-Detection-of-Suspicious-Activity-using-Transfer-Learning/tree/main
+2. Deploy and expose an endpoint that accepts video file uploads (e.g., on /analyze).
+   - It should return analysis results as shown above.
 
-2. Add an endpoint for video file upload and return detections in this format:
-  [{
-    timestamp: "00:00:05",
-    label: "Suspicious Action",
-    description: "...",
-    confidence: 0.91
-  }, ... ]
+3. Set BACKEND_URL above to match your backend API.
 
-3. Replace this function with:
-    export async function analyzeVideoWithModel(file: File): Promise<Detection[]> {
-      const form = new FormData();
-      form.append("file", file);
-      const resp = await fetch("YOUR_BACKEND_API_URL/analyze", {
-        method: "POST",
-        body: form,
-      });
-      if (!resp.ok) throw new Error("Backend API error");
-      return await resp.json();
-    }
-
-4. Backend must handle CORS for frontend localhost/prod domain.
-
-DONE! The rest of the product works end-to-end.
-
+4. Ensure CORS is enabled for local/prod domains as needed.
+=====================================
 */
