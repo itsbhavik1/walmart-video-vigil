@@ -6,21 +6,28 @@ const navItems = [
   {
     title: "Dashboard",
     icon: LayoutDashboard,
-    active: true,
+    key: "dashboard",
   },
   {
     title: "Hot Zones",
     icon: LayoutList,
-    active: false,
+    key: "hotzones",
   },
   {
     title: "Menu",
     icon: Menu,
-    active: false,
+    key: "menu",
   },
 ];
 
-const CrowdNavbar: React.FC = () => (
+type CrowdTab = "dashboard" | "hotzones" | "menu";
+
+interface CrowdNavbarProps {
+  activeTab: CrowdTab;
+  onTabChange: (tab: CrowdTab) => void;
+}
+
+const CrowdNavbar: React.FC<CrowdNavbarProps> = ({ activeTab, onTabChange }) => (
   <nav
     className="flex w-full items-center justify-between rounded-2xl bg-white/95 px-6 py-2 shadow-lg border border-[#43a8f420] mb-5 animate-fade-in"
     aria-label="Crowd Management Navigation"
@@ -37,22 +44,20 @@ const CrowdNavbar: React.FC = () => (
     <div className="flex gap-2">
       {navItems.map((item) => (
         <button
-          key={item.title}
+          key={item.key}
           className={`flex items-center gap-1 px-3 py-1.5 rounded-xl transition font-medium text-sm
-            ${item.active
+            ${activeTab === item.key
               ? "bg-[#0071ce]/90 text-white shadow"
               : "bg-gray-50 text-[#0071ce] hover:bg-[#0071ce]/15"
             }
           `}
-          aria-current={item.active ? "page" : undefined}
+          aria-current={activeTab === item.key ? "page" : undefined}
           type="button"
           tabIndex={0}
+          onClick={() => onTabChange(item.key as CrowdTab)}
         >
           <item.icon size={16} /> {item.title}
         </button>
       ))}
     </div>
   </nav>
-);
-
-export default CrowdNavbar;
