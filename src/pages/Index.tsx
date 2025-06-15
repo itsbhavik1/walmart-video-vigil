@@ -8,6 +8,7 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import FancyTitle from "@/components/FancyTitle";
 import AnalyticsDashboard from "@/components/AnalyticsDashboard";
 import IncidentReports from "@/components/IncidentReports";
+import AlertPanel from "@/components/AlertPanel";
 
 const DUMMY_VIDEO_URL = "https://www.w3schools.com/html/mov_bbb.mp4";
 
@@ -60,8 +61,9 @@ const Index = () => {
       <AnimatedBackground />
       <WalmartHeader />
       <main className="flex flex-col flex-1 py-12 md:px-24 px-2 items-center gap-y-8 w-full">
+        {/* Alerts go at the very top, then analytics/reports */}
+        <AlertPanel />
         <AnalyticsDashboard />
-        {/* Add the Incident Reports panel below the dashboard */}
         <IncidentReports />
         {/* Improved heading */}
         <FancyTitle
