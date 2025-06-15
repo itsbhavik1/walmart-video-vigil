@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import WalmartHeader from "@/components/WalmartHeader";
 import VideoUpload from "@/components/VideoUpload";
@@ -6,6 +5,7 @@ import FraudResults from "@/components/FraudResults";
 import { analyzeVideoWithModel, Detection } from "@/api/fraudDetection";
 import { Button } from "@/components/ui/button";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import FancyTitle from "@/components/FancyTitle";
 
 const Index = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -41,9 +41,13 @@ const Index = () => {
       <AnimatedBackground />
       <WalmartHeader />
       <main className="flex flex-col flex-1 py-12 md:px-24 px-2 items-center gap-y-8 w-full">
-        <h2 className="text-3xl md:text-5xl font-extrabold text-[#0071ce] mt-6 mb-2 text-center tracking-tight drop-shadow-lg font-playfair animate-fade-in">
-          Fraudulent Activity Video Detection
-        </h2>
+
+        {/* Improved heading */}
+        <FancyTitle
+          title="Fraudulent Activity Video Detection"
+          subtitle="Let advanced AI instantly spot shoplifting, vandalism, or other incidents in your security footage."
+        />
+
         <div className="flex justify-center items-center gap-16 w-full animate-fade-in">
           <p className="text-base md:text-xl text-gray-700 font-light bg-white/60 rounded-xl px-7 py-4 shadow-lg backdrop-blur-sm max-w-2xl border-l-4 border-[#ffc220] font-inter">
             Upload your in-store footage and let our advanced AI detect security threats in seconds.<br className="hidden md:inline" />
