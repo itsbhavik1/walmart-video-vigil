@@ -10,6 +10,7 @@ import AnalyticsDashboard from "@/components/AnalyticsDashboard";
 import IncidentReports from "@/components/IncidentReports";
 import AlertPanel from "@/components/AlertPanel";
 import CrowdDashboard from "@/components/CrowdDashboard";
+import StoreNewsInventory from "@/components/StoreNewsInventory";
 
 const DUMMY_VIDEO_URL = "https://www.w3schools.com/html/mov_bbb.mp4";
 
@@ -65,6 +66,8 @@ const Index = () => {
         {/* Alerts go at the very top, then analytics/reports */}
         <AlertPanel />
         <AnalyticsDashboard />
+        {/* --- New Store News & Inventory Alerts Section --- */}
+        <StoreNewsInventory />
         {/* --- New Crowd Dashboard Section below Analytics --- */}
         <CrowdDashboard />
         <IncidentReports />
