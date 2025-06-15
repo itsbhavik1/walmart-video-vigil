@@ -50,11 +50,14 @@ const SUMMARY = {
   customerIncidents: 19,
 };
 
-// Enhanced Legend
-function CustomLegend({ payload }) {
+// Enhanced Legend with explicit typing based on Recharts' LegendProps
+import type { LegendProps, TooltipProps } from "recharts";
+function CustomLegend(props: LegendProps) {
+  const { payload } = props;
+  if (!payload) return null;
   return (
     <ul className="flex flex-wrap gap-4 justify-center p-2">
-      {payload.map((entry, idx) => (
+      {payload.map((entry: any, idx: number) => (
         <li key={entry.value} className="flex items-center gap-2 text-xs font-semibold">
           <span className="block w-4 h-4 rounded-full shadow" style={{ background: entry.color }} />
           <span className="text-gray-700">{entry.value}</span>
@@ -64,13 +67,13 @@ function CustomLegend({ payload }) {
   );
 }
 
-// Enhanced Tooltip
-function CustomTooltip({ active, payload, label }) {
+// Enhanced Tooltip with explicit typing
+function CustomTooltip({ active, payload, label }: TooltipProps<any, any>) {
   if (!active || !payload || !payload.length) return null;
   return (
     <div className="rounded-2xl px-3 py-2 shadow-lg border border-blue-100 bg-white/95 min-w-[110px]">
       <span className="block font-semibold text-[#0071ce] mb-1">{payload[0].name || label}</span>
-      {payload.map((item, i) => (
+      {payload.map((item: any, i: number) => (
         <div key={i} className="flex items-center gap-2 py-0.5">
           <div className="w-3 h-3 rounded-full" style={{ background: item.color || item.payload.color }} />
           <span className="text-sm text-gray-700">{item.value} incidents</span>
@@ -180,8 +183,8 @@ const AnalyticsDashboard: React.FC = () => {
                     </filter>
                   </defs>
                   {/* Always use function-style content for Tooltip and Legend */}
-                  <Tooltip content={(props) => <CustomTooltip {...props} />} />
-                  <Legend content={(props) => <CustomLegend {...props} />} />
+                  <Tooltip content={(props: TooltipProps<any, any>) => <CustomTooltip {...props} />} />
+                  <Legend content={(props: LegendProps) => <CustomLegend {...props} />} />
                 </PieChart>
               </ResponsiveContainer>
             </div>
@@ -210,7 +213,7 @@ const AnalyticsDashboard: React.FC = () => {
                     axisLine={{ stroke: "#bde0ff" }}
                     allowDecimals={false}
                   />
-                  <Tooltip content={(props) => <CustomTooltip {...props} />} />
+                  <Tooltip content={(props: TooltipProps<any, any>) => <CustomTooltip {...props} />} />
                   <Bar
                     dataKey="incidents"
                     fill="#ffc220"
