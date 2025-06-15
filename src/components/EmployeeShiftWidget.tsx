@@ -3,6 +3,7 @@ import React from "react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { User, Users, Coffee } from "lucide-react";
 
+// Added more members for realism!
 const EMPLOYEES = [
   {
     name: "Maria Gomez",
@@ -27,6 +28,42 @@ const EMPLOYEES = [
     role: "Customer Service",
     status: "Off Shift",
     icon: <User size={20} className="text-gray-400" />,
+  },
+  {
+    name: "Joan Blake",
+    role: "Cashier",
+    status: "On Shift",
+    icon: <User size={20} className="text-[#0071ce]" />,
+  },
+  {
+    name: "Priya Desai",
+    role: "Electronics",
+    status: "Break",
+    icon: <Coffee size={20} className="text-[#ffc220]" />,
+  },
+  {
+    name: "Jackson Rivera",
+    role: "Receiving",
+    status: "On Shift",
+    icon: <Users size={20} className="text-green-500" />,
+  },
+  {
+    name: "Elle Tran",
+    role: "Deli",
+    status: "On Shift",
+    icon: <User size={20} className="text-[#0071ce]" />,
+  },
+  {
+    name: "Kevin Rossi",
+    role: "Stocker",
+    status: "Off Shift",
+    icon: <User size={20} className="text-gray-400" />,
+  },
+  {
+    name: "Samantha Kim",
+    role: "Self Checkout",
+    status: "On Shift",
+    icon: <User size={20} className="text-[#0071ce]" />,
   },
 ];
 

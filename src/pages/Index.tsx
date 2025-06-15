@@ -14,6 +14,7 @@ import StoreNewsInventory from "@/components/StoreNewsInventory";
 import StoreOperationsPanel from "@/components/StoreOperationsPanel";
 import EmployeeShiftWidget from "@/components/EmployeeShiftWidget";
 import ContactDirectoryWidget from "@/components/ContactDirectoryWidget";
+import TeamMessageBoard from "@/components/TeamMessageBoard";
 
 const DUMMY_VIDEO_URL = "https://www.w3schools.com/html/mov_bbb.mp4";
 
@@ -73,6 +74,8 @@ const Index = () => {
         {/* --- New Employee Widgets --- */}
         <EmployeeShiftWidget />
         <ContactDirectoryWidget />
+        {/* --- Message Board for Team --- */}
+        <TeamMessageBoard />
         {/* --- Store Operations --- */}
         <StoreOperationsPanel />
         {/* --- New Crowd Dashboard Section below Analytics --- */}
