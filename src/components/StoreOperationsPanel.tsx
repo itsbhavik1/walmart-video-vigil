@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
-import { Megaphone, UserX, Broom, PhoneCall } from "lucide-react";
+import { Megaphone, UserX, Brush, PhoneCall } from "lucide-react";
 
 const quickActions = [
   {
@@ -19,7 +19,7 @@ const quickActions = [
     toastMsg: "Manager has been notified and is on the way.",
   },
   {
-    icon: <Broom size={18} />,
+    icon: <Brush size={18} />,
     label: "Request Cleaning",
     action: "cleaning",
     toastMsg: "Cleaning crew dispatched to the requested area.",
