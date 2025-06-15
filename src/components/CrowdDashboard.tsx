@@ -3,8 +3,8 @@ import React from "react";
 import { Card, CardContent, CardTitle, CardDescription } from "@/components/ui/card";
 import { Users, MapPin } from "lucide-react";
 
-const DEMO_CROWD_VIDEO =
-  "https://media.istockphoto.com/id/1166572253/video/security-cctv-camera-at-shopping-mall-people-walking.mp4?b=1&s=mp4-640x640-is&k=20&c=vO11WOh7rNTWv-2pgTITfYuKOMD2UCZgPILjHApApOE=";
+// Use a reliable, always-accessible demo video:
+const DEMO_CROWD_VIDEO = "https://www.w3schools.com/html/mov_bbb.mp4";
 
 const hotZones = [
   { name: "Entrance A", density: "High", color: "#ff4343" },
